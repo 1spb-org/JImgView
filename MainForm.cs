@@ -16,8 +16,8 @@ namespace JImgView
     public partial class MainForm : Form
     {
         private static string AppDir =>
-            Path.GetDirectoryName(
-            Assembly.GetExecutingAssembly().Location);
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
+
         private static string SettingsFile
             = Path.Combine(AppDir, "settings.json");
         private AppSettings settings;
@@ -39,7 +39,7 @@ namespace JImgView
                 if (File.Exists(SettingsFile))
                 {
                     var json = File.ReadAllText(SettingsFile);
-                    settings = JsonConvert.DeserializeObject<AppSettings>(json);
+                    settings = JsonConvert.DeserializeObject<AppSettings>(json)!;
                 }
             }
             catch
@@ -69,7 +69,14 @@ namespace JImgView
             btnNext.Click += (s, e) => ShowNextImage();
             FormClosing   += (s, e) => SaveSettings();
             pictureBox.DoubleClick += (s, e) => DblClk(s, e);
+            pictureBox.MouseWheel += (s, e) => Wheel(s, e);
             KeyDown += MainForm_KeyDown;
+        }
+
+        private void Wheel(object s, MouseEventArgs e)
+        {
+            pictureBox.Image?.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            pictureBox.Invalidate();
         }
 
         private void DblClk(object s,  EventArgs e)
