@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "JImgView": {
+      "commandName": "Project",
+      "commandLineArgs": "P:\\",
+      "workingDirectory": "P:\\"
+    }
+  }
+}

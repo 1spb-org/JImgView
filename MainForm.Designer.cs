@@ -65,12 +65,14 @@
             // 
             pictureBox.BackColor = SystemColors.Control;
             pictureBox.Dock = DockStyle.Fill;
+            pictureBox.InitialImage = (Image)resources.GetObject("pictureBox.InitialImage");
             pictureBox.Location = new Point(50, 0);
             pictureBox.Name = "pictureBox";
             pictureBox.Size = new Size(184, 238);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
+            pictureBox.Click += pictureBox_Click;
             // 
             // lblStatus
             // 
